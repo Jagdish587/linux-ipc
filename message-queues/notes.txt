@@ -1,0 +1,10 @@
+POSIX messages have an associated priority, and messages are always 
+strictly queued (and thus received) in priority order
+
+Message queue gets created in this path 
+$ ls /dev/mqueue
+
+To Read size 
+$ cat /dev/mqueue/<your created message queue>
+
+For additional info read michael kerisk system programming manual
