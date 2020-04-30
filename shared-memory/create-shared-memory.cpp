@@ -14,6 +14,7 @@ using namespace std;
 int main()
 {
 	// lets create shared memeory object 
+	// you can check your shared memeory in /dev/shm/
 	int fd;
 	size_t size = getpagesize();
 	void *addr ;

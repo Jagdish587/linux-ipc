@@ -2,3 +2,5 @@ Shared 	Memory can be used between two un related process
 Shared 	Memory is fastest IPC since no kernel is involved 
 Everything is done from user space , Typically shared memeory resides in the process creating the shared memory segment
 Doesn't Provide Synchronisation
+
+Shared memory is created in /dev/shm/
