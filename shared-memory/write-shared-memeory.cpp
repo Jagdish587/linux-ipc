@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 
     len = sizeof(writebuff);
 
+    // changes in size , set size for object
     if (ftruncate(fd, len) == -1){        /* Resize object to hold string */
         cout<<"ftruncate failed\n";
 		exit(EXIT_FAILURE);

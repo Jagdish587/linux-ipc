@@ -23,10 +23,8 @@ int main(int argc, char *argv[])
         cout<<"shm_open failed\n" ;
 		exit(EXIT_FAILURE);
 	}
-
-    /* Use shared memory object size as length argument for mmap()
-       and as number of bytes to write() */
-
+    
+    // retrive info like size, ownership and permissions
     if (fstat(fd, &sb) == -1){
         cout<<"fstat failed \n";
 		exit(EXIT_FAILURE);
