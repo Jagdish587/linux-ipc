@@ -1,0 +1,13 @@
+(1) run the script as 
+$ ./myscript.sh | sort | uniq
+ends
+is
+the
+this
+way
+world
+
+(2) you can see the o/p , the script file writes data to sort and then sort writes data to uniq command .
+Here PIpe | helps is communicating between two process , left  of pipe is writer and right of pipe is reader 
+
+
