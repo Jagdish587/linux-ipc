@@ -14,7 +14,7 @@ int main()
 {
     
     string buffer = "I am from client";
-    string readbuff;
+    char readbuff[1024];
     
     //  An interface between an application process and transport layer 
     // create a TCP Socket
@@ -50,7 +50,7 @@ int main()
         cout<<"send call no of bytes written = "<<ret<<endl;
     }
     
-    read(fd, readbuff.c_str(), readbuff.length());
+    read(fd, readbuff, sizeof(readbuff));
     
     cout<<"Message from server = " <<readbuff<<endl;
 
