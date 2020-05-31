@@ -18,6 +18,7 @@ int main()
     char buffer[1024] = {0};
     int opt = 1;
     struct sockaddr_in addr;
+    string writebuff = "Hello Jagdish client , Welcome to World of Socket ";
     
     // Here SOCK_STREAM = TCP , SOCK_DGRAM = UDP
     int fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -42,13 +43,13 @@ int main()
     
     // bind an adress to the socket 
     bind(fd, (struct sockaddr *)&addr, sizeof (addr));
+        
+   // queue limit for incoming connections are specified with listen
+   listen(fd, 3);
+
 
     while(1) {
-        char writebuff[1024] = "Hello client , Welcome to World of Socket ";
         
-        // queue limit for incoming connections are specified with listen
-        listen(fd, 3);
-
 		 cout<<"Server Waiting for Clients  \n";
 		
 		// accept a connection on a socket
@@ -60,7 +61,7 @@ int main()
 
         cout<<endl;
 
-        write(clientfd, writebuff, sizeof (writebuff));
+        write(clientfd, writebuff.c_str(), writebuff.length());
 
     }
     return 0;
