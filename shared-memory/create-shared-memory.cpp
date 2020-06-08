@@ -13,11 +13,9 @@ using namespace std;
 
 int main()
 {
-	// lets create shared memeory object 
+	// lets create shared memory object 
 	// you can check your shared memeory in /dev/shm/
 	int fd;
-	size_t size = getpagesize();
-	void *addr ;
 				
 	fd = shm_open(NAME , O_CREAT | O_RDWR , 0777);
     if (fd == -1){
@@ -26,18 +24,7 @@ int main()
     } else {
     	cout<<"shared memory open success fd = "<<fd<<endl;
     }
-	
-	if (ftruncate(fd, size) == -1){        /* Resize object to hold string */
-        cout<<"ftruncate call failed ";
-		exit(EXIT_FAILURE);
-	}	
-	
-    addr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-    if (addr == MAP_FAILED){
-        cout<<"mmap failed \n";
-        exit(EXIT_FAILURE);
-    }
-	
+
 	return 0;	
 	
 }	

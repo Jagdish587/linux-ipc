@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 {
 	int fd;
     size_t len;                 /* Size of shared memory object */
-    char *addr;
-    char writebuff[] = "Jagdish Tirumala";
+    char *virt_addr;
+    char writebuff[] = "Jagdish Tirumala , Hello mmap ";
 
     fd = shm_open(NAME , O_RDWR, 0);      /* Open existing object */
     if (fd == -1){
@@ -33,20 +33,35 @@ int main(int argc, char *argv[])
         cout<<"ftruncate failed\n";
 		exit(EXIT_FAILURE);
 	}
+	
+	cout<<"len before = "<<len<<endl;
 
-    addr = (char *)mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-    if (addr == MAP_FAILED) {
+#if 0
+    
+    void *mmap(void *addr, size_t length, int prot, int flags,
+                  int fd, off_t offset);
+           
+     int munmap(void *addr, size_t length);
+
+
+#endif
+    virt_addr = (char *)mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    if (virt_addr == MAP_FAILED) {
         cout<<"mmap failed\n";
         exit(EXIT_FAILURE);        
     }    
 
-   if (close(fd) == -1)                    /* 'fd' is mo longer needed */
+   if (close(fd) == -1)                    /* 'fd' is no longer needed */
         cout<<"close fd failed \n";
 
     cout<<" copying bytes "<<len<<endl;
-    memcpy(addr, writebuff, len);
+    memcpy(virt_addr, writebuff, len);
+    
+    
     
     cout<<endl;
+    
+    munmap((void *)virt_addr, len);
 	
 	return 0;
 }	
